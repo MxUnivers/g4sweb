@@ -5,6 +5,7 @@ import AdminLayout from "../../components/layout/AdminLayout";
 import { getContacts } from "../../redux/actions/contactActions"; // Assurez-vous que cette action existe
 import { Line } from "react-chartjs-2"; // Pour les graphiques
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import moment from "moment";
 
 // Register required plugins
 ChartJS.register(
@@ -63,8 +64,8 @@ const Dashboard = () => {
             (contact) => new Date(contact.createdAt).getMonth() === i
           ).length
         ),
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "#bf2200",
+        backgroundColor: "#cf2702",
         borderWidth: 2,
       },
     ],
@@ -190,7 +191,7 @@ const Dashboard = () => {
                   </div>
                   <div className="p-0 card-body">
                     <div className="table-responsive">
-                      <table className="table mb-0 table-hover">
+                      <table className="table table-cell mb-0 table-hover">
                         <thead className="table-light">
                           <tr>
                             <th>Nom</th>
@@ -205,7 +206,7 @@ const Dashboard = () => {
                               <td>{contact.name}</td>
                               <td>{contact.email}</td>
                               <td>{contact.phone}</td>
-                              <td>{new Date(contact.createdAt).toLocaleDateString()}</td>
+                              <td>{new Date(contact.createdAt).toLocaleDateString()} {moment(contact.createdAt).format("HH:MM")}</td>
                             </tr>
                           ))}
                           {filteredContacts.length === 0 && (

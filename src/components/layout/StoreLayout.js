@@ -116,15 +116,7 @@ const StoreLayout = ({ children }) => {
                   <FiShoppingBag size={20} className="mr-2" /> Accueil
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/about"
-                  className="flex items-center text-gray-700 hover:text-red-500"
-                  onClick={toggleMenu}
-                >
-                  <FiUser size={20} className="mr-2" /> À propos
-                </Link>
-              </li>
+
               <li>
                 <Link
                   to="/contact"
@@ -134,7 +126,7 @@ const StoreLayout = ({ children }) => {
                   <FiMail size={20} className="mr-2" /> Contact
                 </Link>
               </li>
-              {isAuthenticated && (
+              {/* {isAuthenticated && (
                 <li>
                   <button
                     className="flex items-center text-gray-700 hover:text-red-500"
@@ -143,7 +135,7 @@ const StoreLayout = ({ children }) => {
                     <FiLogOut size={20} className="mr-2" /> Déconnexion
                   </button>
                 </li>
-              )}
+              )} */}
             </ul>
 
             {/* Footer */}
@@ -191,19 +183,10 @@ const StoreLayout = ({ children }) => {
                     Accueil
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="hover:text-red-500">
-                    À propos
-                  </a>
-                </li>
+                
                 <li>
                   <a href="#" className="hover:text-red-500">
                     Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-red-500">
-                    Politique de confidentialité
                   </a>
                 </li>
               </ul>

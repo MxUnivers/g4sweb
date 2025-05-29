@@ -5,6 +5,7 @@ import { FiChevronDown, FiMail, FiMessageCircle, FiSend } from "react-icons/fi";
 import { toast } from "sonner";
 import { replyToContact } from "../../redux/actions/contactActions";
 import AdminLayout from "../../components/layout/AdminLayout";
+import moment from "moment/moment";
 
 const ContactList = () => {
     const dispatch = useDispatch();
@@ -79,7 +80,7 @@ const ContactList = () => {
                                 >
                                     <div className="flex items-center space-x-2">
                                         <FiMail size={20} className="text-red-500" />
-                                        <span>{contact.name}</span>
+                                        <span>{contact.name} ( {new Date(contact.createdAt).toLocaleDateString()} {moment(contact.createdAt).format("HH:MM")} )</span>
                                     </div>
                                     <FiChevronDown
                                         size={20}
@@ -102,7 +103,7 @@ const ContactList = () => {
                                         </p>
                                         <p>
                                             <strong>Date:</strong>{" "}
-                                            {new Date(contact.createdAt).toLocaleDateString()}
+                                            {new Date(contact.createdAt).toLocaleDateString()} {moment(contact.createdAt).format("HH:MM")}
                                         </p>
 
                                         {/* Bouton Répondre */}
