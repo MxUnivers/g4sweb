@@ -18,6 +18,8 @@ import Dashboard from "./pages/admin/DashBoard";
 // import PrivateRoute from "./components/auth/PrivateRoute";
 import AdminRoute from "./components/auth/AdminRoute";
 import { Toaster } from "sonner";
+import ContactPage from "./pages/ContactPage";
+import ContactList from "./pages/admin/ContactList";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +33,7 @@ const App = () => (
           <Routes>
             {/* Frontend Routes */}
             <Route path="/" element={<Index />} />
+            <Route path="/contact" element={<ContactPage />} />
            
             
             {/* Admin Routes */}
@@ -38,6 +41,11 @@ const App = () => (
             <Route path="/admin/dashboard" element={
               <AdminRoute>
                 <Dashboard />
+              </AdminRoute>
+            } />
+            <Route path="/admin/contacts" element={
+              <AdminRoute>
+                <ContactList/>
               </AdminRoute>
             } />
             

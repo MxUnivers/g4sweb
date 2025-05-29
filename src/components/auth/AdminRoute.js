@@ -7,8 +7,8 @@ const AdminRoute = ({ children }) => {
   
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-12 h-12 border-b-2 border-blue-600 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -17,7 +17,7 @@ const AdminRoute = ({ children }) => {
     return <Navigate to="/admin/login" />;
   }
   
-  return isAdmin ? children : <Navigate to="/" />;
+  return isAdmin ? children : <Navigate to="/admin/login" />;
 };
 
 export default AdminRoute;

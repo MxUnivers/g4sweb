@@ -21,13 +21,13 @@ export const loginAdmin = (credentials) => async (dispatch) => {
   try {
     const res = await API.post('/admin/login', credentials);
     localStorage.setItem('token', res.data.token);
-    localStorage.setItem('user', JSON.stringify(res.data.admin));
+    localStorage.setItem('user', JSON.stringify(res.data.data));
 
     dispatch({
       type: LOGIN_SUCCESS,
       payload: {
         token: res.data.token,
-        user: res.data.admin,
+        user: res.data.data,
         isAdmin: true,
       },
     });
@@ -36,8 +36,8 @@ export const loginAdmin = (credentials) => async (dispatch) => {
     return res.data;
   } catch (error) {
     const errorMsg =
-      error.response && error.response.data.error
-        ? error.response.data.error
+      error.response && error.response.data.message
+        ? error.response.data.message
         : 'Erreur de connexion';
 
     toast.error(errorMsg);

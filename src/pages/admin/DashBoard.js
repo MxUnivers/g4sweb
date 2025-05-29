@@ -4,13 +4,24 @@ import { Link } from "react-router-dom";
 import AdminLayout from "../../components/layout/AdminLayout";
 import { getContacts } from "../../redux/actions/contactActions"; // Assurez-vous que cette action existe
 import { Line } from "react-chartjs-2"; // Pour les graphiques
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+
+// Register required plugins
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const { contacts, loading: contactsLoading } = useSelector((state) => state.contacts);
+  const { contacts, loading } = useSelector((state) => state.contacts);
   const [filteredContacts, setFilteredContacts] = useState([]);
   const [filters, setFilters] = useState({
-    category: "",
     status: "",
     startDate: "",
     endDate: "",
@@ -21,7 +32,7 @@ const Dashboard = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!contactsLoading) {
+    if (!loading) {
       applyFilters();
     }
   }, [contacts, filters]);
@@ -29,15 +40,6 @@ const Dashboard = () => {
   // Appliquer les filtres
   const applyFilters = () => {
     let filtered = contacts;
-
-    if (filters.category) {
-      filtered = filtered.filter((contact) => contact.category === filters.category);
-    }
-
-    if (filters.status) {
-      filtered = filtered.filter((contact) => contact.status === filters.status);
-    }
-
     if (filters.startDate && filters.endDate) {
       const start = new Date(filters.startDate).getTime();
       const end = new Date(filters.endDate).getTime();
@@ -47,7 +49,6 @@ const Dashboard = () => {
           new Date(contact.createdAt).getTime() <= end
       );
     }
-
     setFilteredContacts(filtered);
   };
 
@@ -69,13 +70,33 @@ const Dashboard = () => {
     ],
   };
 
-  const isLoading = contactsLoading;
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        type: "category", // Register the category scale
+        title: {
+          display: true,
+          text: "Mois",
+        },
+      },
+      y: {
+        type: "linear",
+        title: {
+          display: true,
+          text: "Nombre de contacts",
+        },
+      },
+    },
+  };
+
+  const isLoading = loading;
 
   return (
     <AdminLayout>
       <div className="container-fluid">
-        <h1 className="h2 mt-4 mb-4 text-dark">Tableau de bord</h1>
-
+        <h1 className="mt-4 mb-4 h2 text-dark">Tableau de bord</h1>
         {isLoading ? (
           <div className="d-flex justify-content-center align-items-center" style={{ height: "60vh" }}>
             <div className="spinner-border text-primary" role="status">
@@ -85,12 +106,12 @@ const Dashboard = () => {
         ) : (
           <>
             {/* Stats Cards */}
-            <div className="row g-4 mb-4">
+            <div className="mb-4 row g-4">
               {/* Total Contacts */}
               <div className="col-md-6 col-lg-4">
-                <div className="card border-0 shadow-sm h-100">
+                <div className="border-0 shadow-sm card h-100">
                   <div className="card-body d-flex align-items-center">
-                    <div className="bg-info bg-opacity-10 rounded-circle p-3 me-3">
+                    <div className="p-3 bg-info bg-opacity-10 rounded-circle me-3">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="32"
@@ -103,11 +124,11 @@ const Dashboard = () => {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-muted small mb-0">Total Contacts</p>
+                      <p className="mb-0 text-muted small">Total Contacts</p>
                       <h5 className="mb-0">{contacts.length}</h5>
                     </div>
                   </div>
-                  <div className="card-footer py-2 bg-transparent border-top-0">
+                  <div className="py-2 bg-transparent card-footer border-top-0">
                     <Link to="/admin/contacts" className="small link-primary text-decoration-none">
                       Voir tous les contacts
                     </Link>
@@ -115,42 +136,13 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-
             {/* Filters */}
-            <div className="row mb-4">
+            <div className="mb-4 row">
               <div className="col-lg-12">
-                <div className="card shadow-sm">
+                <div className="shadow-sm card">
                   <div className="card-body">
-                    <h5 className="card-title mb-3">Filtrer les contacts</h5>
+                    <h5 className="mb-3 card-title">Filtrer les contacts</h5>
                     <div className="row g-3">
-                      <div className="col-md-3">
-                        <select
-                          className="form-select"
-                          value={filters.category}
-                          onChange={(e) =>
-                            setFilters({ ...filters, category: e.target.value })
-                          }
-                        >
-                          <option value="">Toutes les catégories</option>
-                          <option value="support">Support</option>
-                          <option value="ventes">Ventes</option>
-                          <option value="autres">Autres</option>
-                        </select>
-                      </div>
-                      <div className="col-md-3">
-                        <select
-                          className="form-select"
-                          value={filters.status}
-                          onChange={(e) =>
-                            setFilters({ ...filters, status: e.target.value })
-                          }
-                        >
-                          <option value="">Tous les statuts</option>
-                          <option value="new">Nouveau</option>
-                          <option value="in-progress">En cours</option>
-                          <option value="resolved">Résolu</option>
-                        </select>
-                      </div>
                       <div className="col-md-3">
                         <input
                           type="date"
@@ -176,37 +168,34 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-
             {/* Graph */}
-            <div className="row mb-4">
+            <div className="mb-4 row">
               <div className="col-lg-12">
-                <div className="card shadow-sm">
+                <div className="shadow-sm card">
                   <div className="card-header">
-                    <h5 className="card-title mb-0">Contacts par mois</h5>
+                    <h5 className="mb-0 card-title">Contacts par mois</h5>
                   </div>
                   <div className="card-body">
-                    <Line data={chartData} options={{ responsive: true, maintainAspectRatio: false }} />
+                    <Line data={chartData} options={chartOptions} />
                   </div>
                 </div>
               </div>
             </div>
-
             {/* Recent Contacts */}
             <div className="row">
               <div className="col-lg-12">
-                <div className="card shadow-sm">
+                <div className="shadow-sm card">
                   <div className="card-header">
-                    <h5 className="card-title mb-0">Contacts récents</h5>
+                    <h5 className="mb-0 card-title">Contacts récents</h5>
                   </div>
-                  <div className="card-body p-0">
+                  <div className="p-0 card-body">
                     <div className="table-responsive">
-                      <table className="table table-hover mb-0">
+                      <table className="table mb-0 table-hover">
                         <thead className="table-light">
                           <tr>
                             <th>Nom</th>
                             <th>Email</th>
                             <th>Téléphone</th>
-                            <th>Catégorie</th>
                             <th>Date</th>
                           </tr>
                         </thead>
@@ -216,7 +205,6 @@ const Dashboard = () => {
                               <td>{contact.name}</td>
                               <td>{contact.email}</td>
                               <td>{contact.phone}</td>
-                              <td>{contact.category}</td>
                               <td>{new Date(contact.createdAt).toLocaleDateString()}</td>
                             </tr>
                           ))}
@@ -231,7 +219,7 @@ const Dashboard = () => {
                       </table>
                     </div>
                     {filteredContacts.length > 5 && (
-                      <div className="card-footer bg-white pt-2 pb-2">
+                      <div className="pt-2 pb-2 bg-white card-footer">
                         <Link to="/admin/contacts" className="small link-primary text-decoration-none float-end">
                           Voir tous les contacts
                         </Link>

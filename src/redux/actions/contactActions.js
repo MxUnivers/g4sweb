@@ -20,13 +20,13 @@ export const getContacts = (filters = {}) => async (dispatch) => {
     const params = new URLSearchParams();
     if (filters.email) params.append('email', filters.email);
     if (filters.phone) params.append('phone', filters.phone);
-    if (filters.postalCode) params.append('postalCode', filters.postalCode);
-    if (filters.category) params.append('category', filters.category);
 
+    
     const queryString = params.toString();
     const url = `/contacts/messages${queryString ? '?' + queryString : ''}`;
 
     const res = await API.get(url);
+    console.log(res.data.data)
     dispatch({
       type: GET_CONTACTS,
       payload: res.data.data,
@@ -35,17 +35,17 @@ export const getContacts = (filters = {}) => async (dispatch) => {
   } catch (error) {
     const errorMsg =
       error.response && error.response.data.message
-        ? error.response.data.error
+        ? error.response.data.message
         : 'Erreur lors de la récupération des contacts';
 
-    toast.error(errorMsg);
+    // toast.error(errorMsg);
 
     dispatch({
       type: CONTACTS_ERROR,
       payload: errorMsg,
     });
 
-    throw error;
+    // throw error;
   }
 };
 
@@ -68,7 +68,7 @@ export const getContactById = (contactId) => async (dispatch) => {
       payload: errorMsg,
     });
 
-    throw error;
+    // throw error;
   }
 };
 
@@ -83,12 +83,15 @@ export const createContact = (contactData) => async (dispatch) => {
       payload: res.data.data,
     });
 
-    toast.success('Message envoyé avec succès!');
+    toast.success(res?.data?.message ||'Message envoyé avec succès!');
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
     return res.data.data;
   } catch (error) {
     const errorMsg =
-      error.response && error.response.data.error
-        ? error.response.data.error
+      error.response && error.response.data.message
+        ? error.response.data.message
         : 'Erreur lors de l\'envoi du message';
 
     toast.error(errorMsg);
@@ -98,7 +101,7 @@ export const createContact = (contactData) => async (dispatch) => {
       payload: errorMsg,
     });
 
-    throw error;
+    // throw error;
   }
 };
 
@@ -113,12 +116,12 @@ export const replyToContact = (contactId, response) => async (dispatch) => {
       payload: res.data.data,
     });
 
-    toast.success('Réponse ajoutée avec succès!');
+    toast.success(res?.data?.message ||'Réponse ajoutée avec succès!');
     return res.data.data;
   } catch (error) {
     const errorMsg =
-      error.response && error.response.data.error
-        ? error.response.data.error
+      error.response && error.response.data.message
+        ? error.response.data.message
         : 'Erreur lors de l\'ajout de la réponse';
 
     toast.error(errorMsg);
@@ -128,7 +131,7 @@ export const replyToContact = (contactId, response) => async (dispatch) => {
       payload: errorMsg,
     });
 
-    throw error;
+    // throw error;
   }
 };
 
@@ -143,12 +146,12 @@ export const deleteContact = (contactId) => async (dispatch) => {
       payload: contactId,
     });
 
-    toast.success(res.data.message || 'Message supprimé avec succès!');
+    toast.success(res?.data?.message || 'Message supprimé avec succès!');
     return res.data.data;
   } catch (error) {
     const errorMsg =
-      error.response && error.response.data.error
-        ? error.response.data.error
+      error.response && error.response.data.message
+        ? error.response.data.message
         : 'Erreur lors de la suppression du message';
 
     toast.error(errorMsg);
