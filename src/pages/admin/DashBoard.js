@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AdminLayout from "../../components/layout/AdminLayout";
-import { getProducts } from "../../redux/actions/productActions";
+import { getProducts } from "../../redux/actions/contactActions";
 import { getCategories } from "../../redux/actions/categoryActions";
 import { getOrders } from "../../redux/actions/orderActions";
 import { getCustomers } from "../../redux/actions/customerActions";

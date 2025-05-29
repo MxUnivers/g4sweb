@@ -5,7 +5,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { FiShoppingBag, FiGrid, FiArrowRight } from 'react-icons/fi';
 import StoreLayout from '../components/layout/StoreLayout';
-import { getProducts } from '../redux/actions/productActions';
+import { getProducts } from '../redux/actions/contactActions';
 import { getCategories } from '../redux/actions/categoryActions';
 import { addToCart } from '../redux/actions/cartActions';
 
