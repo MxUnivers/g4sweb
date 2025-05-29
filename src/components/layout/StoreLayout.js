@@ -27,7 +27,7 @@ const StoreLayout = ({ children }) => {
     return (
         <div className="relative min-h-screen bg-gray-100">
             {/* Header */}
-            <header className="sticky top-0 z-50 z-auto bg-white shadow-sm">
+            <header className="sticky top-0 z-50 bg-white shadow-sm">
                 <nav className="container flex items-center justify-between px-4 py-4 mx-auto">
                     {/* Logo */}
                     <div>

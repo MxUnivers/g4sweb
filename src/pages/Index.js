@@ -13,13 +13,13 @@ const Index = () => {
                 {/* Hero Section */}
                 <section className="relative">
                     <img src="images/bgimage.jpg" alt="Hero Image" className=" w-full h-[500px] object-cover" />
-                    <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                    <div className="container absolute top-0 bottom-0 left-0 right-0 z-20 flex flex-col items-center justify-center px-4 py-16 mx-auto text-center text-white">
+                    <div className="absolute inset-0 z-20 bg-black bg-opacity-50"></div>
+                    <div className="container absolute top-[20%] left-[10%] bottom-[10%] w-96 md:w-1/2 lg:w-1/3 xl:w-1/3  bg-black  z-20 flex flex-col items-center justify-center px-4 py-16 mx-auto text-center text-white">
                         <h1 className="mb-4 text-4xl font-bold">Integrated Security Solutions</h1>
                         <p className="mb-8 text-xl">
                             Discover our combination of expertise, security professionals, technology and data analytics to manage risks and enhance value.
                         </p>
-                        <a href="#" className="px-6 py-3 text-white bg-red-500 rounded-lg hover:bg-red-600">Download the full guide here</a>
+                        <a href="#" className="px-6 py-3 text-3xl text-red-500 rounded-lg hover:text-red-700 hover:underline ">Download the full guide here</a>
                     </div>
                 </section>
 
