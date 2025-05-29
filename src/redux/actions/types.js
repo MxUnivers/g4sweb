@@ -1,0 +1,61 @@
+// Auth actions
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';
+export const AUTH_LOADING = 'AUTH_LOADING';
+export const AUTH_ERROR = 'AUTH_ERROR';
+
+// Product actions
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_PRODUCT = 'GET_PRODUCT';
+export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const PRODUCTS_LOADING = 'PRODUCTS_LOADING';
+export const PRODUCTS_ERROR = 'PRODUCTS_ERROR';
+
+// Category actions
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_CATEGORY = 'GET_CATEGORY';
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+export const CATEGORIES_LOADING = 'CATEGORIES_LOADING';
+export const CATEGORIES_ERROR = 'CATEGORIES_ERROR';
+
+
+// Postalcodes actions
+export const GET_POSTALCODES = 'GET_POSTALCODES';
+export const GET_POSTALCODE = 'GET_POSTALCODE';
+export const ADD_POSTALCODE = 'ADD_POSTALCODE';
+export const UPDATE_POSTALCODE = 'UPDATE_POSTALCODE';
+export const DELETE_POSTALCODE = 'DELETE_POSTALCODE';
+export const POSTALCODES_LOADING = 'POSTALCODES_LOADING';
+export const POSTALCODES_ERROR = 'POSTALCODES_ERROR';
+
+// Order actions
+export const GET_ORDERS = 'GET_ORDERS';
+export const GET_ORDER = 'GET_ORDER';
+export const ADD_ORDER = 'ADD_ORDER';
+export const UPDATE_ORDER = 'UPDATE_ORDER';
+export const ORDERS_LOADING = 'ORDERS_LOADING';
+export const ORDERS_ERROR = 'ORDERS_ERROR';
+
+// Customer actions
+export const GET_CUSTOMERS = 'GET_CUSTOMERS';
+export const GET_CUSTOMER = 'GET_CUSTOMER';
+export const CUSTOMERS_LOADING = 'CUSTOMERS_LOADING';
+export const CUSTOMERS_ERROR = 'CUSTOMERS_ERROR';
+
+// Transaction actions
+export const GET_TRANSACTIONS = 'GET_TRANSACTIONS';
+export const GET_TRANSACTION = 'GET_TRANSACTION';
+export const UPDATE_TRANSACTION = 'UPDATE_TRANSACTION';
+export const TRANSACTIONS_LOADING = 'TRANSACTIONS_LOADING';
+export const TRANSACTIONS_ERROR = 'TRANSACTIONS_ERROR';
+
+// Cart actions
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM';
+export const CLEAR_CART = 'CLEAR_CART';
