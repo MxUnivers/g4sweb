@@ -1,347 +1,137 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import { FiShoppingBag, FiGrid, FiArrowRight } from 'react-icons/fi';
 import StoreLayout from '../components/layout/StoreLayout';
-import { getProducts } from '../redux/actions/contactActions';
-import { getCategories } from '../redux/actions/categoryActions';
-import { addToCart } from '../redux/actions/cartActions';
 
 const Index = () => {
     const dispatch = useDispatch();
-    const { featuredProducts, newProducts, loading: productsLoading } = useSelector((state) => state.products);
-    const { categories, loading: categoriesLoading } = useSelector((state) => state.categories);
 
-    const loading = productsLoading || categoriesLoading;
-
-    // Configuration responsive pour le carrousel
-    const responsive = {
-        superLargeDesktop: {
-            breakpoint: { max: 4000, min: 1024 },
-            items: 4,
-            partialVisibilityGutter: 40
-        },
-        desktop: {
-            breakpoint: { max: 1024, min: 768 },
-            items: 3,
-            partialVisibilityGutter: 30
-        },
-        tablet: {
-            breakpoint: { max: 768, min: 464 },
-            items: 2,
-            partialVisibilityGutter: 20
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            partialVisibilityGutter: 10
-        }
-    };
-
-    useEffect(() => {
-        dispatch(getProducts());
-        dispatch(getCategories());
-    }, [dispatch]);
-
-    const handleAddToCart = (product) => {
-        dispatch(addToCart(product, 1));
-    };
-
-
-    const heroSlides = [
-        {
-            image: 'assets/images/barner-ordinateur.jpg',
-            title: 'Bienvenue sur votre boutique en ligne',
-            description: 'Découvrez notre sélection de produits de qualité à des prix compétitifs. Livraison rapide et service client exceptionnel.',
-            cta: 'Voir tous les produits',
-            link: '/products',
-        },
-        {
-            image: 'assets/images/casque_VR.png',
-            title: 'Offres spéciales',
-            description: 'Profitez de nos offres exclusives et promotions limitées.',
-            cta: 'En savoir plus',
-            link: '/products',
-        },
-        {
-            image: 'assets/images/barner-camera.jpg',
-            title: 'Nouveautés de la saison',
-            description: 'Explorez les dernières tendances et nouveautés disponibles dès maintenant.',
-            cta: 'Découvrir',
-            link: '/products',
-        },
-        
-    ];
-
-        
-    const responsiveBarner = {
-        superLargeDesktop: {
-            breakpoint: { max: 4000, min: 1024 },
-            items: 1,
-            partialVisibilityGutter: 40
-        },
-        desktop: {
-            breakpoint: { max: 1024, min: 768 },
-            items: 1,
-            partialVisibilityGutter: 30
-        },
-        tablet: {
-            breakpoint: { max: 768, min: 464 },
-            items: 1,
-            partialVisibilityGutter: 20
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            partialVisibilityGutter: 10
-        }
-    };
 
     return (
         <StoreLayout>
-            {/* Hero Section */}
-            <Carousel
-                responsive={responsiveBarner}
-                            autoPlay={true}
-                            infinite={true}
-                            showDots={false}
-                            containerClass="carousel-container"
-            >
-                {heroSlides.map((slide, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            position: 'relative',
-                            height: '100vh',
-                            backgroundImage: `url(${slide.image})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                        }}
-                    >
-                        <div
-                            style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: '100%',
-                                height: '100%',
-                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                                zIndex: 1,
-                            }}
-                        />
-                        <div
-                            style={{
-                                position: 'relative',
-                                zIndex: 2,
-                                color: 'white',
-                                textAlign: 'center',
-                                top: '50%',
-                                transform: 'translateY(-50%)',
-                                padding: '0 20px',
-                            }}
-                        >
-                            <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }} className="text-white">{slide.title}</h1>
-                            <p style={{ fontSize: '1.25rem', marginBottom: '2rem' }} className="text-white">{slide.description}</p>
-                            <Link to={slide.link} className="btn btn-light btn-lg">
-                                {slide.cta} <FiArrowRight className="ms-2" />
-                            </Link>
+
+            <div className="mx-10 px-auto">
+                {/* Hero Section */}
+                <section className="relative">
+                    <img src="images/bgimage.jpg" alt="Hero Image" className=" w-full h-[500px] object-cover" />
+                    <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+                    <div className="container absolute top-0 bottom-0 left-0 right-0 z-20 flex flex-col items-center justify-center px-4 py-16 mx-auto text-center text-white">
+                        <h1 className="mb-4 text-4xl font-bold">Integrated Security Solutions</h1>
+                        <p className="mb-8 text-xl">
+                            Discover our combination of expertise, security professionals, technology and data analytics to manage risks and enhance value.
+                        </p>
+                        <a href="#" className="px-6 py-3 text-white bg-red-500 rounded-lg hover:bg-red-600">Download the full guide here</a>
+                    </div>
+                </section>
+
+                {/* World Security Report */}
+                <section className="container px-4 py-12 mx-auto">
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                        <div>
+                            <img src="images/world-security-report.jpg" alt="World Security Report" className="w-full" />
+                        </div>
+                        <div>
+                            <h2 className="mb-4 text-3xl font-bold">World Security Report Press Releases</h2>
+                            <p className="mb-6">
+                                Visit our World Security Report Press Release Centre to read through our global and regional press releases or watch the World Security Report 2023: Key Findings video.
+                            </p>
+                            <a href="#" className="px-6 py-3 text-white bg-red-500 rounded-lg hover:bg-red-600">View the Press Releases</a>
                         </div>
                     </div>
-                ))}
-            </Carousel>
+                </section>
 
-
-            {/* Categories Section */}
-            <section className="py-5 bg-light">
-                <div className="container">
-                    <h2 className="text-center h3 mb-4">Nos Catégories</h2>
-
-                    {loading ? (
-                        <div className="d-flex justify-content-center align-items-center" style={{ height: '200px' }}>
-                            <div className="spinner-border text-danger" role="status">
-                                <span className="visually-hidden">Chargement...</span>
-                            </div>
+                {/* Our Services */}
+                <section id="services" className="container px-4 py-12 mx-auto">
+                    <h2 className="mb-8 text-2xl font-bold text-center">Our services</h2>
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        {/* Service 1 */}
+                        <div>
+                            <img src="images/security-services.jpg" alt="Security Services" className="w-full mb-4 rounded-md h-96" />
+                            <h3 className="mb-2 text-xl font-bold">Security Services</h3>
+                            <p className="mb-4 text-gray-700">
+                                With an extensive range of security systems and products, we can help businesses reach their security objectives by increasing their revenues, reducing the costs of managing risk, protecting critical assets or improving service delivery to customers.
+                            </p>
+                            <a href="#" className="font-medium text-red-500 hover:text-red-600">
+                                Read more
+                            </a>
                         </div>
-                    ) : (
-                        <>
-                            <div className="row g-4">
-                                {categories.slice(0, 8).map((category) => (
-                                    <div key={category._id} className="col-md-6 col-lg-3">
-                                        <Link to={`/category/${category._id}`} className="card shadow-sm border h-100 text-decoration-none">
-                                            <div className="card-body d-flex flex-column align-items-center text-center">
-                                                <FiGrid className="fs-1 text-danger mb-3" />
-                                                <h5 className="card-title">{category.name}</h5>
-                                                <p className="card-text text-muted small">
-                                                    {category.description || "Découvrez notre sélection"}
-                                                </p>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                ))}
-                            </div>
 
-                            {categories.length > 8 && (
-                                <div className="text-center mt-4">
-                                    <Link to="#" className="btn btn-outline-danger">
-                                        Voir toutes les catégories
-                                    </Link>
-                                </div>
-                            )}
-                        </>
-                    )}
-                </div>
-            </section>
-
-            {/* Featured Products Carousel */}
-            <section className="py-5">
-                <div className="container">
-                    <h2 className="text-center h3 mb-4">Produits en vedette</h2>
-
-                    {loading && featuredProducts.length === 0 ? (
-                        <div className="d-flex justify-content-center align-items-center" style={{ height: '200px' }}>
-                            <div className="spinner-border text-danger" role="status">
-                                <span className="visually-hidden">Chargement...</span>
-                            </div>
+                        {/* Service 2 */}
+                        <div>
+                            <img src="images/our-history.jpg" alt="Consulting Services" className="w-full mb-4 rounded-md h-96" />
+                            <h3 className="mb-2 text-xl font-bold">Consulting Services</h3>
+                            <p className="mb-4 text-gray-700">
+                                Our consulting services provide strategic insights to enhance your security posture and operational efficiency.
+                            </p>
+                            <a href="#" className="font-medium text-red-500 hover:text-red-600">
+                                Read more
+                            </a>
                         </div>
-                    ) : (
-                        <Carousel
-                            responsive={responsive}
-                            autoPlay={true}
-                            infinite={true}
-                            showDots={false}
-                            containerClass="carousel-container"
-                            itemClass="px-2"
-                            dotListClass="custom-dot-list-style"
-                        >
-                            {featuredProducts.map((product) => (
-                                <div key={product._id} className="card h-100 shadow-sm">
-                                    <div className="position-relative">
-                                        {product.images && product.images.length > 0 ? (
-                                            <img
-                                                src={product.images[0]}
-                                                alt={product.name}
-                                                className="card-img-top"
-                                                style={{ height: '200px', objectFit: 'cover' }}
-                                            />
-                                        ) : (
-                                            <div className="card-img-top d-flex align-items-center justify-content-center bg-light" style={{ height: '200px' }}>
-                                                <FiShoppingBag className="text-muted fs-1" />
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="card-body d-flex flex-column">
-                                        <Link to={`/product/${product._id}`} className="text-decoration-none text-dark">
-                                            <h5 className="card-title">{product.name}</h5>
-                                        </Link>
-                                        <p className="card-text text-muted flex-grow-1" style={{ minHeight: '48px' }}>
-                                            {product.description.substring(0, 60)}...
-                                        </p>
-                                        <div className="d-flex justify-content-between align-items-center">
-                                            <strong className="text-danger">{product.price.toFixed(2)} F</strong>
-                                            <button
-                                                onClick={() => handleAddToCart(product)}
-                                                className="btn btn-danger btn-sm"
-                                            >
-                                                Ajouter
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </Carousel>
-                    )}
 
-                    <div className="text-center mt-4">
-                        <Link to="/products" className="btn btn-outline-danger">
-                            Voir tous les produits
-                        </Link>
+                        {/* Service 3 */}
+                        <div>
+                            <img src="images/news-article.jpg" alt="Technology Services" className="w-full mb-4 rounded-md h-96" />
+                            <h3 className="mb-2 text-xl font-bold">Technology Services</h3>
+                            <p className="mb-4 text-gray-700">
+                                Leverage cutting-edge technology solutions to secure your assets and streamline operations.
+                            </p>
+                            <a href="#" className="font-medium text-red-500 hover:text-red-600">
+                                Read more
+                            </a>
+                        </div>
+
+                        {/* Ajoutez d'autres services ici si nécessaire */}
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* New Products Carousel */}
-            <section className="py-5 bg-light">
-                <div className="container">
-                    <h2 className="text-center h3 mb-4">Nouveaux arrivages</h2>
-
-                    {loading && newProducts.length === 0 ? (
-                        <div className="d-flex justify-content-center align-items-center" style={{ height: '200px' }}>
-                            <div className="spinner-border text-danger" role="status">
-                                <span className="visually-hidden">Chargement...</span>
+                {/* Careers */}
+                <section id="careers" className="container px-4 py-12 mx-auto text-white bg-black">
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                        <div>
+                            <h2 className="mb-8 text-2xl font-bold">Careers at G4S</h2>
+                            <p className="mb-8">
+                                At G4S you are assured a world of opportunities. Our employees and services touch the lives of others every day.
+                            </p>
+                            <div className="flex space-x-4">
+                                <a href="#" className="px-4 py-2 text-gray-800 bg-white rounded-full hover:bg-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </a>
+                                {/* Répéter pour les autres réseaux sociaux */}
                             </div>
                         </div>
-                    ) : (
-                        <Carousel
-                            responsive={responsive}
-                            autoPlay={true}
-                            infinite={true}
-                            showDots={false}
-                            containerClass="carousel-container"
-                            itemClass="px-2"
-                        >
-                            {newProducts.map((product) => (
-                                <div key={product._id} className="card h-100 shadow-sm position-relative">
-                                    <div className="position-relative">
-                                        {product.images && product.images.length > 0 ? (
-                                            <img
-                                                src={product.images[0]}
-                                                alt={product.name}
-                                                className="card-img-top"
-                                                style={{ height: '200px', objectFit: 'cover' }}
-                                            />
-                                        ) : (
-                                            <div className="card-img-top d-flex align-items-center justify-content-center bg-light" style={{ height: '200px' }}>
-                                                <FiShoppingBag className="text-muted fs-1" />
-                                            </div>
-                                        )}
-                                        <span className="position-absolute top-0 start-0 m-2 badge bg-success">Nouveau</span>
-                                    </div>
-                                    <div className="card-body d-flex flex-column">
-                                        <Link to={`/product/${product._id}`} className="text-decoration-none text-dark">
-                                            <h5 className="card-title">{product.name}</h5>
-                                        </Link>
-                                        <p className="card-text text-muted flex-grow-1" style={{ minHeight: '48px' }}>
-                                            {product.description.substring(0, 60)}...
-                                        </p>
-                                        <div className="d-flex justify-content-between align-items-center">
-                                            <strong className="text-danger">{product.price.toFixed(2)} F</strong>
-                                            <button
-                                                onClick={() => handleAddToCart(product)}
-                                                className="btn btn-danger btn-sm"
-                                            >
-                                                Ajouter
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </Carousel>
-                    )}
-                </div>
-            </section>
+                        <div>
+                            <h2 className="mb-8 text-2xl font-bold">Join our successful team at G4S</h2>
+                            <button className="px-6 py-3 mb-4 text-white bg-red-500 rounded-lg hover:bg-red-600">Visit our G4S Job Board</button>
+                            {/* Autres éléments de carrière */}
+                        </div>
+                    </div>
+                </section>
 
-            {/* Newsletter Section */}
-            <section className="py-5 bg-danger text-white">
-                <div className="container text-center">
-                    <h2 className="h3 mb-3 text-white">Abonnez-vous à notre newsletter</h2>
-                    <p className="mb-4 text-white">
-                        Restez informé de nos derniers produits et offres spéciales.
-                    </p>
-                    <form className="d-flex flex-column flex-md-row gap-2 justify-content-center mb-4">
-                        <input
-                            type="email"
-                            placeholder="Votre adresse email"
-                            className="form-control w-md-50"
-                        />
-                        <button type="submit" className="btn btn-light">
-                            S'abonner
-                        </button>
-                    </form>
-                </div>
-            </section>
+                {/* Social Responsibility */}
+                <section id="responsibility" className="container px-4 py-12 mx-auto">
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                        <div className="p-6 text-white bg-red-500">
+                            <h2 className="mb-4 text-2xl font-bold">Social Responsibility</h2>
+                            <p className="mb-8">
+                                As a global leader in security and related services, Environmental, Social & Governance (ESG) is very important to G4S and it forms a key part of our strategy.
+                            </p>
+                            {/* Liens ESG */}
+                        </div>
+                        <div>
+                            <h2 className="mb-4 text-2xl font-bold">Our ESG commitment</h2>
+                            <p className="mb-8">
+                                G4S publishes 2023 Sustainability Report. Download our 2023 Sustainability Report here.
+                            </p>
+                            {/* Image ou lien supplémentaire */}
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
         </StoreLayout>
+
     );
 };
 
