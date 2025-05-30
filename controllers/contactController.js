@@ -3,28 +3,80 @@ const Contact = require('../models/ContactModel');
 const ApplicationInfo = require('../utils/dataApi.js');
 const sendEmail = require('../utils/sendEmail');
 
+
+// Fonction utilitaire pour valider l'email
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
 // Créer un nouveau message
 exports.createMessage = async (req, res) => {
-  const { name, email, phone,subjet, message, file } = req.body;
+  const { name, email, phone, subjet, message } = req.body;
 
   try {
+    // Validation des champs
+    if (!name || !email || !message) {
+      return res.status(400).json({ message: "Tous les champs obligatoires doivent être remplis." });
+    }
+
+    if (name.length > 100) {
+      return res.status(400).json({ message: "Le nom ne doit pas dépasser 100 caractères." });
+    }
+
+    if (email.length > 150 || !validateEmail(email)) {
+      return res.status(400).json({ message: "L'email est invalide ou dépasse 150 caractères." });
+    }
+
+    if (phone && phone.length > 20) {
+      return res.status(400).json({ message: "Le téléphone ne doit pas dépasser 20 caractères." });
+    }
+
+    if (subjet && subjet.length > 100) {
+      return res.status(400).json({ message: "Le sujet ne doit pas dépasser 100 caractères." });
+    }
+
+    if (message.length > 500) {
+      return res.status(400).json({ message: "Le message ne doit pas dépasser 500 caractères." });
+    }
+
+    // Création du nouveau message
     const newMessage = new Contact({
       name,
       email,
       subjet,
       phone,
       message,
-      file,
+      file: req.file ? req.file.path : null, // Si vous gérez des fichiers uploadés
     });
 
-    sendEmail(ApplicationInfo.emailApplication,ApplicationInfo.passwordEmail,ApplicationInfo.emailApplication,subjet,message);
+    // Envoi des emails
+    sendEmail(
+      ApplicationInfo.emailApplication,
+      ApplicationInfo.passwordEmail,
+      "fatihoune.dev@gmail.com",
+      subjet,
+      message
+    );
+    sendEmail(
+      ApplicationInfo.emailApplication,
+      ApplicationInfo.passwordEmail,
+      ApplicationInfo.emailApplication,
+      subjet,
+      message
+    );
 
+    // Sauvegarde du message dans la base de données
     await newMessage.save();
-    res.status(201).json({ message: 'Message sent successfully', data:newMessage });
+
+    res.status(201).json({ message: "Message envoyé avec succès", data: newMessage });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    console.error("Erreur lors de la création du message :", error);
+    res.status(500).json({ message: "Erreur serveur", error });
   }
 };
+
+
 
 // Lister les messages avec filtres
 exports.getMessages = async (req, res) => {
