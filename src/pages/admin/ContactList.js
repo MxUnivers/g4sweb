@@ -76,7 +76,7 @@ const ContactList = () => {
                                 {/* En-tête de l'accordéon */}
                                 <button
                                     onClick={() => toggleAccordion(contact._id)}
-                                    className="flex items-center justify-between w-full px-4 py-3 transition bg-gray-100 hover:bg-gray-200"
+                                    className="flex items-center justify-between w-full px-4 py-3 transition bg-white hover:bg-gray-50"
                                 >
                                     <div className="flex items-center space-x-2">
                                         <FiMail size={20} className="text-red-500" />
@@ -98,6 +98,14 @@ const ContactList = () => {
                                         <p>
                                             <strong>Téléphone:</strong> {contact.phone}
                                         </p>
+                                        {
+                                            contact?.subjet && (
+                                                <p>
+                                                    <strong>Objet :</strong> {contact.subjet}
+                                                </p>
+                                            )
+                                        }
+
                                         <p>
                                             <strong>Message:</strong> {contact.message}
                                         </p>

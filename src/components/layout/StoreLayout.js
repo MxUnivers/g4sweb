@@ -48,11 +48,11 @@ const StoreLayout = ({ children }) => {
                 Accueil
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/about" className="hover:text-red-500">
                 À propos
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/contact" className="hover:text-red-500">
                 Contact
@@ -62,7 +62,7 @@ const StoreLayout = ({ children }) => {
 
           {/* Search */}
           <div className="hidden md:block">
-            <button className="text-gray-600 hover:text-red-500">
+            {/* <button className="text-gray-600 hover:text-red-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6"
@@ -77,7 +77,7 @@ const StoreLayout = ({ children }) => {
                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                 />
               </svg>
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile Menu Button */}
