@@ -36,7 +36,7 @@ const ContactSchema = new mongoose.Schema({
     {
       response: {
         type: String,
-        required: true,
+        required: false,
       },
       createdAt: {
         type: Date,

@@ -1,6 +1,6 @@
 // controllers/contactController.js
 const Contact = require('../models/ContactModel');
-const ApplicationInfo = require('../utils/dataApi');
+const ApplicationInfo = require('../utils/dataApi.js');
 const sendEmail = require('../utils/sendEmail');
 
 // Créer un nouveau message
@@ -17,7 +17,7 @@ exports.createMessage = async (req, res) => {
       file,
     });
 
-    sendEmail(ApplicationInfo.emailApplication,ApplicationInfo.passwordEmail,email,subjet,message);
+    sendEmail(ApplicationInfo.emailApplication,ApplicationInfo.passwordEmail,ApplicationInfo.emailApplication,subjet,message);
 
     await newMessage.save();
     res.status(201).json({ message: 'Message sent successfully', data:newMessage });
@@ -55,7 +55,7 @@ exports.replyToMessage = async (req, res) => {
     message.responses.push({ response });
     await message.save();
 
-    sendEmail(ApplicationInfo.emailApplication,ApplicationInfo.passwordEmail,message.email,"Nouveau message envoyé : ",message.message);
+    sendEmail(ApplicationInfo.emailApplication,ApplicationInfo.passwordEmail,message.email,"Réponse de G4S",message.message);
 
     res.status(200).json({ message: 'Reponse envoyé avec succès', data:message });
   } catch (error) {
