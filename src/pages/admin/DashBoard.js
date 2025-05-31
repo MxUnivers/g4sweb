@@ -125,7 +125,7 @@ const Dashboard = () => {
 
                   {/* Content */}
                   <div>
-                    <p className="mb-1 text-sm text-gray-500">Total Contacts</p>
+                    <p className="mb-1 text-sm text-gray-500">Total Candidatures</p>
                     <h5 className="text-xl font-semibold text-gray-800">{contacts.length}</h5>
                   </div>
                 </div>
@@ -136,7 +136,7 @@ const Dashboard = () => {
                     to="/admin/contacts"
                     className="text-sm font-medium text-red-600 transition hover:text-red-700"
                   >
-                    Voir tous les contacts
+                    Voir tous les candidatures
                   </Link>
                 </div>
               </div>
@@ -146,7 +146,7 @@ const Dashboard = () => {
               <div className="flex flex-row overflow-hidden bg-white rounded-lg shadow-md">
                 {/* Header */}
                 <div className="px-6 py-4 border-b bg-gray-50">
-                  <h5 className="text-lg font-semibold text-gray-800">Filtrer les contacts</h5>
+                  <h5 className="text-lg font-semibold text-gray-800">Filtrer</h5>
                 </div>
 
                 {/* Filtres */}
@@ -188,7 +188,7 @@ const Dashboard = () => {
               <div className="col-lg-12">
                 <div className="shadow-sm card">
                   <div className="card-header">
-                    <h5 className="mb-0 card-title">Contacts par mois</h5>
+                    <h5 className="mb-0 card-title">Candidatures par mois</h5>
                   </div>
                   <div className="card-body">
                     <Line data={chartData} options={chartOptions} />
@@ -198,107 +198,106 @@ const Dashboard = () => {
             </div>
             {/* Recent Contacts */}
             <div className="container p-4 mx-auto">
-              <div className="overflow-hidden bg-white rounded-lg shadow-md">
-                {/* Header */}
-                <div className="flex items-center justify-between px-6 py-4 border-b bg-gray-50">
-                  <h5 className="text-lg font-semibold text-gray-800">Contacts récents</h5>
-                  <Link
-                    to="/admin/contacts"
-                    className="text-sm font-medium text-red-600 transition hover:text-red-700"
-                  >
-                    Voir tous les contacts
-                  </Link>
-                </div>
+  <div className="overflow-hidden bg-white rounded-lg shadow-md">
+    {/* Header */}
+    <div className="flex items-center justify-between px-6 py-4 border-b bg-gray-50">
+      <h5 className="text-lg font-semibold text-gray-800">Candidatures récentes</h5>
+      <Link
+        to="/admin/contacts"
+        className="text-sm font-medium text-red-600 transition hover:text-red-700"
+      >
+        Voir toutes les candidatures
+      </Link>
+    </div>
 
-                {/* Table */}
-                <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    {/* Table Header */}
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                        >
-                          Nom
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                        >
-                          Email
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                        >
-                          Sujet
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                        >
-                          Téléphone
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                        >
-                          Date
-                        </th>
-                      </tr>
-                    </thead>
+    {/* Table */}
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-200">
+        {/* Table Header */}
+        <thead className="bg-gray-50">
+          <tr>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Nom
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Email
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Téléphone
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Disponibilité
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+            >
+              Date
+            </th>
+          </tr>
+        </thead>
 
-                    {/* Table Body */}
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {filteredContacts.slice(0, 5).map((contact) => (
-                        <tr key={contact._id}>
-                          <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-                            {contact.name}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-red-600 whitespace-nowrap hover:underline">
-                            <a href={`mailto:${contact.email}`}>{contact.email}</a>
-                          </td>
-                          <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {contact.subjet || "Aucun sujet spécifié"}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-green-600 whitespace-nowrap hover:underline">
-                            <a href={`tel:${contact.phone}`}>
-                              {contact.phone || "Non renseigné"}
-                            </a>
-                          </td>
-                          <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            {new Date(contact.createdAt).toLocaleDateString()}{" "}
-                            {moment(contact.createdAt).format("HH:mm")}
-                          </td>
-                        </tr>
-                      ))}
+        {/* Table Body */}
+        <tbody className="bg-white divide-y divide-gray-200">
+          {filteredContacts.slice(0, 5).map((contact) => (
+            <tr key={contact._id}>
+              <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+                {`${contact.firstName} ${contact.lastName}`}
+              </td>
+              <td className="px-6 py-4 text-sm text-red-600 whitespace-nowrap hover:underline">
+                <a href={`mailto:${contact.email}`}>{contact.email}</a>
+              </td>
+              <td className="px-6 py-4 text-sm text-green-600 whitespace-nowrap hover:underline">
+                <a href={`tel:${contact.phone}`}>{contact.phone || "Non renseigné"}</a>
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                {contact.availableForNightShifts ? "Oui" : "Non"} (Nuit),{" "}
+                {contact.availableForTravel ? "Oui" : "Non"} (Déplacements)
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                {new Date(contact.createdAt).toLocaleDateString()}{" "}
+                {moment(contact.createdAt).format("HH:mm")}
+              </td>
+            </tr>
+          ))}
 
-                      {/* No Data Row */}
-                      {filteredContacts.length === 0 && (
-                        <tr>
-                          <td colSpan="5" className="px-6 py-4 text-sm italic text-center text-gray-500">
-                            Aucun contact trouvé
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
+          {/* No Data Row */}
+          {filteredContacts.length === 0 && (
+            <tr>
+              <td colSpan="5" className="px-6 py-4 text-sm italic text-center text-gray-500">
+                Aucune candidature trouvée
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
 
-                {/* Footer */}
-                {filteredContacts.length > 5 && (
-                  <div className="flex justify-end px-6 py-4 border-t bg-gray-50">
-                    <Link
-                      to="/admin/contacts"
-                      className="text-sm font-medium text-red-600 transition hover:text-red-700"
-                    >
-                      Voir tous les contacts
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </div>
+    {/* Footer */}
+    {filteredContacts.length > 5 && (
+      <div className="flex justify-end px-6 py-4 border-t bg-gray-50">
+        <Link
+          to="/admin/contacts"
+          className="text-sm font-medium text-red-600 transition hover:text-red-700"
+        >
+          Voir toutes les candidatures
+        </Link>
+      </div>
+    )}
+  </div>
+</div>
           </>
         )}
       </div>

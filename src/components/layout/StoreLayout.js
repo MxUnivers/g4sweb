@@ -55,7 +55,7 @@ const StoreLayout = ({ children }) => {
             </li> */}
             <li>
               <Link to="/contact" className="hover:text-red-500">
-                Contact
+                Nous rejoindre
               </Link>
             </li>
           </ul>
@@ -186,7 +186,7 @@ const StoreLayout = ({ children }) => {
                 
                 <li>
                   <a href="#" className="hover:text-red-500">
-                    Contact
+                    Nous rejoindre
                   </a>
                 </li>
               </ul>

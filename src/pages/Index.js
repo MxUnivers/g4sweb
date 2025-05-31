@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import StoreLayout from '../components/layout/StoreLayout';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
     const dispatch = useDispatch();
-
+    const  navigate  =  useNavigate();
 
     return (
         <StoreLayout>
@@ -12,70 +13,70 @@ const Index = () => {
             <div className="mx-10 px-auto">
                 {/* Hero Section */}
                 <section className="relative">
-                    <img src="images/bgimage.jpg" alt="Hero Image" className=" w-full h-[500px] object-cover" />
+                    <img src="images/bgimage.jpg" alt="Hero Image" className="w-full h-[500px] object-cover" />
                     <div className="absolute inset-0 z-20 bg-black bg-opacity-50"></div>
-                    <div className="container absolute top-[20%] left-[10%] bottom-[10%] w-96 md:w-1/2 lg:w-1/3 xl:w-1/3  bg-black  z-20 flex flex-col items-center justify-center px-4 py-16 mx-auto text-center text-white">
-                        <h1 className="mb-4 text-4xl font-bold">Integrated Security Solutions</h1>
+                    <div className="container absolute top-[20%] left-[10%] bottom-[10%] w-96 md:w-1/2 lg:w-1/3 xl:w-1/3 bg-black z-20 flex flex-col items-center justify-center px-4 py-16 mx-auto text-center text-white">
+                        <h1 className="mb-4 text-4xl font-bold">Solutions de recrutement intégrées</h1>
                         <p className="mb-8 text-xl">
-                            Discover our combination of expertise, security professionals, technology and data analytics to manage risks and enhance value.
+                            Découvrez notre combinaison d'expertise, de professionnels du recrutement, de technologie et d'analytiques des données pour gérer les talents et optimiser votre valeur.
                         </p>
-                        <a href="#" className="px-6 py-3 text-3xl text-red-500 rounded-lg hover:text-red-700 hover:underline ">Download the full guide here</a>
+                        <a href="#" className="px-6 py-3 text-3xl text-red-500 rounded-lg hover:text-red-700 hover:underline">Téléchargez le guide complet ici</a>
                     </div>
                 </section>
 
-                {/* World Security Report */}
+                {/* Rapport sur le marché du recrutement */}
                 <section className="container px-4 py-12 mx-auto">
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                         <div>
-                            <img src="images/world-security-report.jpg" alt="World Security Report" className="w-full" />
+                            <img src="images/world-security-report.jpg" alt="Rapport sur le marché du recrutement" className="w-full" />
                         </div>
                         <div>
-                            <h2 className="mb-4 text-3xl font-bold">World Security Report Press Releases</h2>
+                            <h2 className="mb-4 text-3xl font-bold">Rapport sur le marché du recrutement et communiqués de presse</h2>
                             <p className="mb-6">
-                                Visit our World Security Report Press Release Centre to read through our global and regional press releases or watch the World Security Report 2023: Key Findings video.
+                                Visitez notre centre de presse pour lire nos communiqués de presse mondiaux et régionaux ou regardez la vidéo des principaux résultats du Rapport sur le marché du recrutement 2023.
                             </p>
-                            <a href="#" className="px-6 py-3 text-white bg-red-500 rounded-lg hover:bg-red-600">View the Press Releases</a>
+                            <a href="#" className="px-6 py-3 text-white bg-red-500 rounded-lg hover:bg-red-600">Voir les communiqués de presse</a>
                         </div>
                     </div>
                 </section>
 
-                {/* Our Services */}
+                {/* Nos services */}
                 <section id="services" className="container px-4 py-12 mx-auto">
-                    <h2 className="mb-8 text-2xl font-bold text-center">Our services</h2>
+                    <h2 className="mb-8 text-2xl font-bold text-center">Nos services</h2>
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                         {/* Service 1 */}
                         <div>
-                            <img src="images/security-services.jpg" alt="Security Services" className="w-full mb-4 rounded-md h-96" />
-                            <h3 className="mb-2 text-xl font-bold">Security Services</h3>
+                            <img src="images/security-services.jpg" alt="Services de recrutement" className="w-full mb-4 rounded-md h-96" />
+                            <h3 className="mb-2 text-xl font-bold">Services de recrutement</h3>
                             <p className="mb-4 text-gray-700">
-                                With an extensive range of security systems and products, we can help businesses reach their security objectives by increasing their revenues, reducing the costs of managing risk, protecting critical assets or improving service delivery to customers.
+                                Avec une gamme étendue de systèmes et de produits de recrutement, nous aidons les entreprises à atteindre leurs objectifs en augmentant leurs effectifs, en réduisant les coûts de gestion des talents, en protégeant les actifs humains ou en améliorant la prestation de services aux clients.
                             </p>
                             <a href="#" className="font-medium text-red-500 hover:text-red-600">
-                                Read more
+                                En savoir plus
                             </a>
                         </div>
 
                         {/* Service 2 */}
                         <div>
-                            <img src="images/our-history.jpg" alt="Consulting Services" className="w-full mb-4 rounded-md h-96" />
-                            <h3 className="mb-2 text-xl font-bold">Consulting Services</h3>
+                            <img src="images/our-history.jpg" alt="Services de conseil en recrutement" className="w-full mb-4 rounded-md h-96" />
+                            <h3 className="mb-2 text-xl font-bold">Services de conseil en recrutement</h3>
                             <p className="mb-4 text-gray-700">
-                                Our consulting services provide strategic insights to enhance your security posture and operational efficiency.
+                                Nos services de conseil fournissent des insights stratégiques pour améliorer votre posture en matière de recrutement et votre efficacité opérationnelle.
                             </p>
                             <a href="#" className="font-medium text-red-500 hover:text-red-600">
-                                Read more
+                                En savoir plus
                             </a>
                         </div>
 
                         {/* Service 3 */}
                         <div>
-                            <img src="images/news-article.jpg" alt="Technology Services" className="w-full mb-4 rounded-md h-96" />
-                            <h3 className="mb-2 text-xl font-bold">Technology Services</h3>
+                            <img src="images/news-article.jpg" alt="Services technologiques de recrutement" className="w-full mb-4 rounded-md h-96" />
+                            <h3 className="mb-2 text-xl font-bold">Services technologiques de recrutement</h3>
                             <p className="mb-4 text-gray-700">
-                                Leverage cutting-edge technology solutions to secure your assets and streamline operations.
+                                Profitez de solutions technologiques de pointe pour optimiser votre processus de recrutement et rationaliser vos opérations.
                             </p>
                             <a href="#" className="font-medium text-red-500 hover:text-red-600">
-                                Read more
+                                En savoir plus
                             </a>
                         </div>
 
@@ -83,13 +84,13 @@ const Index = () => {
                     </div>
                 </section>
 
-                {/* Careers */}
+                {/* Carrières */}
                 <section id="careers" className="container px-4 py-12 mx-auto text-white bg-black">
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                         <div>
-                            <h2 className="mb-8 text-2xl font-bold">Careers at G4S</h2>
+                            <h2 className="mb-8 text-2xl font-bold">Carrières chez G4S</h2>
                             <p className="mb-8">
-                                At G4S you are assured a world of opportunities. Our employees and services touch the lives of others every day.
+                                Chez [Nom de l'entreprise], vous avez accès à un monde de possibilités. Nos employés et nos services font une différence dans la vie des autres chaque jour.
                             </p>
                             <div className="flex space-x-4">
                                 <a href="#" className="px-4 py-2 text-gray-800 bg-white rounded-full hover:bg-gray-100">
@@ -101,27 +102,27 @@ const Index = () => {
                             </div>
                         </div>
                         <div>
-                            <h2 className="mb-8 text-2xl font-bold">Join our successful team at G4S</h2>
-                            <button className="px-6 py-3 mb-4 text-white bg-red-500 rounded-lg hover:bg-red-600">Visit our G4S Job Board</button>
+                            <h2 className="mb-8 text-2xl font-bold">Rejoignez notre équipe dynamique chez G4S</h2>
+                            <button className="px-6 py-3 mb-4 text-white bg-red-500 rounded-lg hover:bg-red-600" onClick={()=>{navigate("/contact")}}>Visitez notre tableau d'emplois</button>
                             {/* Autres éléments de carrière */}
                         </div>
                     </div>
                 </section>
 
-                {/* Social Responsibility */}
+                {/* Responsabilité sociale */}
                 <section id="responsibility" className="container px-4 py-12 mx-auto">
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                         <div className="p-6 text-white bg-red-500">
-                            <h2 className="mb-4 text-2xl font-bold">Social Responsibility</h2>
+                            <h2 className="mb-4 text-2xl font-bold">Responsabilité sociale</h2>
                             <p className="mb-8">
-                                As a global leader in security and related services, Environmental, Social & Governance (ESG) is very important to G4S and it forms a key part of our strategy.
+                                En tant que leader mondial en matière de recrutement et de services connexes, l'Environnement, la Société et la Gouvernance (ESG) sont très importants pour [Nom de l'entreprise] et constituent un élément clé de notre stratégie.
                             </p>
                             {/* Liens ESG */}
                         </div>
                         <div>
-                            <h2 className="mb-4 text-2xl font-bold">Our ESG commitment</h2>
+                            <h2 className="mb-4 text-2xl font-bold">Notre engagement ESG</h2>
                             <p className="mb-8">
-                                G4S publishes 2023 Sustainability Report. Download our 2023 Sustainability Report here.
+                                G4S publie son Rapport de durabilité 2023. Téléchargez notre Rapport de durabilité 2023 ici.
                             </p>
                             {/* Image ou lien supplémentaire */}
                         </div>
