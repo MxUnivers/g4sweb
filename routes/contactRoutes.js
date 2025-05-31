@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 const contactController = require('../controllers/contactController');
 
-router.post('/send', contactController.createMessage);
-router.get('/messages', contactController.getMessages);
-router.post('/reply/:id', contactController.replyToMessage);
+router.post('/send', contactController.createApplication);
+router.get('/messages', contactController.getApplications);
+router.post('/reply/:id', contactController.replyToApplication);
 
 module.exports = router;
